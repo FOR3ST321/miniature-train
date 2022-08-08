@@ -17,10 +17,18 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->rememberToken();
+            $table->enum('gender',['Male', 'Female']);
+            $table->integer('age');
+            $table->integer('coin');
+            $table->string('instagram_link')->nullable();
+            $table->string('phone');
+            $table->longText('address');
+            $table->unsignedBigInteger('avatar');
+            $table->boolean('is_incognito');
             $table->timestamps();
+
+            $table->foreign('avatar')->references('id')->on('avatars');
         });
     }
 
