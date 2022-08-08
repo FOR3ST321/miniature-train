@@ -18,4 +18,9 @@ class ChatController extends Controller
         ]);
         return response()->json(['success'=>$request->message]);
     }
+
+    public function loadMessage(Request $request){
+        $messages = Chat::where('chat_room_id', $request->room_id)->get();
+        return response()->json(['data'=>$messages]);
+    }
 }

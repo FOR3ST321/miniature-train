@@ -16,8 +16,8 @@
             </div>
             <hr style="border:1px solid white">
 
-            <div class="d-flex align-items-center text-white" style="margin:20px 0px 20px 0px">
-                Chat - waktu
+            <div class="d-flex flex-column align-items-center" style="margin:20px 0px 20px 0px" id="chatbox">
+                
             </div>
 
             <form id='chatForm' data-url={{ route('sendMessage') }} method="POST">

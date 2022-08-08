@@ -30,6 +30,9 @@ Route::middleware(['user'])->group(function () {
     Route::get('/message', [Controller::class, 'message']);
     Route::get('/chat/{id}', [Controller::class, 'chatroom']);
 
+
+    //ajax
     Route::post('/sendMessage', [ChatController::class, 'sendMessage'])->name('sendMessage');
+    Route::get('/loadMessage', [ChatController::class, 'loadMessage'])->name('loadMessage');
 });
 

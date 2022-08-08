@@ -9,6 +9,28 @@ function sendChat() {
         data: {message: msg, room_id: room_id },
         success: function (data) {
             $("#chat_input").val('');
+            loadMessage();
+        },
+    });
+}
+
+function loadMessage(){
+    let room_id = $("#room_id").val();
+    $.ajax({
+        type: "GET",
+        url: '/loadMessage',
+        data: {room_id: room_id },
+        success: function (data) {
+            $("#chatbox").html(''); //reset
+            data.data.forEach(e=> {
+                console.log(e);
+                let html = 
+                `<div class="container" style="width:100%;background-color:#fff8f8">
+                   ${e.message} - ${e.created_at}
+                </div>`
+
+                $("#chatbox").append(html);
+            });
         },
     });
 }
@@ -19,6 +41,9 @@ $(document).ready(function () {
             "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
         },
     });
+
+    loadMessage();
+    setInterval(function () {loadMessage()}, 1000);
 
     $("#send_button").attr("disabled", "true");
     $("#send_button").click(function (e) {
