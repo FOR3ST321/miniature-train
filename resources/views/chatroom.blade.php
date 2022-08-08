@@ -36,4 +36,6 @@
             </form>
         </div>
     </div>
+
+    <script src="/js/chatSystem.js"></script>
 @endsection

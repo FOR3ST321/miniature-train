@@ -31,6 +31,16 @@ class User extends Authenticatable
         'is_incognito'
     ];
 
+    public static function getSearchData($query){
+        global $queries;
+        $queries = $query;
+        return User::where('name', 'like', '%'.$query.'%')
+        ->orWhereHas('hobbies', function($query){
+            global $queries;
+            $query->where('hobby', 'like', '%'.$queries.'%');
+        })->where('is_incognito', 0)->orderByDesc('id')->paginate(9);
+    }
+
     public function hobbies(){
         return $this->hasMany(Hobby::class);
     }
