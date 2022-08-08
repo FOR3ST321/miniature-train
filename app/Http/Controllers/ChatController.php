@@ -20,7 +20,7 @@ class ChatController extends Controller
     }
 
     public function loadMessage(Request $request){
-        $messages = Chat::where('chat_room_id', $request->room_id)->get();
+        $messages = Chat::getChat($request->room_id);
         return response()->json(['data'=>$messages]);
     }
 }

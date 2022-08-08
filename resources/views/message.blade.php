@@ -7,7 +7,7 @@
         @foreach ($rooms as $item)
             {{-- @dump($item) --}}
             <?php
-            $pointer = $item->friends_1->name == Auth::user()->name ? $item->friends_2 : $item->friends_1;
+            $pointer = $item->friends_1->id == Auth::user()->id ? $item->friends_2 : $item->friends_1;
             ?>
             <a href="/chat/{{$item->id}}" style="text-decoration: none">
                 <div class="d-flex align-items-center" style="margin:10px 0px 10px 0px">

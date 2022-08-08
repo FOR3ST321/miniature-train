@@ -23,16 +23,31 @@ function loadMessage(){
         success: function (data) {
             $("#chatbox").html(''); //reset
             data.data.forEach(e=> {
-                console.log(e);
-                let html = 
-                `<div class="container" style="width:100%;background-color:#fff8f8">
-                   ${e.message} - ${e.created_at}
-                </div>`
+                let html;
+                if(e.user_id === e.sender){
+                    html =  `<div class="container text-white text-right" style="background-color:#2cab20;margin:10px 0px 5px 40%;width:60%;padding:10px">
+                    ${e.message}
+                    </div>
+                    <p class='text-white text-right' style="font-size:12px">${e.created_at}</p>`
+                }
+                else{
+                    html = 
+                    `<div class="container text-white" style="background-color:#3a3fde;margin:10px 0px 5px 0px;width:60%;padding:10px">
+                    ${e.message}
+                    </div>
+                    <p class='text-white text-left' style="font-size:12px">${e.created_at}</p>`
+                }
 
                 $("#chatbox").append(html);
             });
+            scrollToBottom();
         },
     });
+}
+
+function scrollToBottom(){
+    const element = document.getElementById('chatbox');
+    element.scrollTop = element.scrollHeight;
 }
 
 $(document).ready(function () {
@@ -43,6 +58,7 @@ $(document).ready(function () {
     });
 
     loadMessage();
+    
     setInterval(function () {loadMessage()}, 1000);
 
     $("#send_button").attr("disabled", "true");

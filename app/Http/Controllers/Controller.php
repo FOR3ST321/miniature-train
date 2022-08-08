@@ -42,7 +42,7 @@ class Controller extends BaseController
 
     public function chatroom(){
         return view('chatroom', [
-            'room' => Chat::where('chat_room_id', request()->id)->orderByDesc('created_at')->get(),
+            'room' => ChatRoom::where('id', request()->id)->orderByDesc('created_at')->first(),
             'active' => ''
         ]);
     }
