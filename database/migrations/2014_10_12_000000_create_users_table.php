@@ -24,11 +24,11 @@ class CreateUsersTable extends Migration
             $table->string('instagram_link')->nullable();
             $table->string('phone');
             $table->longText('address');
-            $table->unsignedBigInteger('avatar');
+            $table->unsignedBigInteger('avatar_id');
             $table->boolean('is_incognito');
             $table->timestamps();
 
-            $table->foreign('avatar')->references('id')->on('avatars');
+            $table->foreign('avatar_id')->references('id')->on('avatars');
         });
     }
 

@@ -17,6 +17,7 @@ class CreatePaymentsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->enum('payment_type', ['avatar', 'incognito']);
+            $table->integer('amount');
             $table->unsignedBigInteger('avatar_id')->nullable();
             $table->boolean('is_a_gift')->nullable();
             $table->enum('payment_method', ['Credit Card', 'PayPal']);
