@@ -14,7 +14,7 @@ class UserAvatar extends Model
     protected $fillable = ['user_id', 'avatar_id', 'is_a_gift', 'gift_giver'];
 
     public function user(){
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
     public function avatar(){

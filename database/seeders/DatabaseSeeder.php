@@ -45,7 +45,7 @@ class DatabaseSeeder extends Seeder
         for($i = 2;$i<=11;$i++){
             Avatar::create([
                 'name' => $ava[$i-1],
-                'price' => $faker->numberBetween(50, 100000),
+                'price' => $faker->numberBetween(50, 1000),
                 'image' => '/img/avatar/'.($i-1).'.png'
             ]);
         }
@@ -62,7 +62,10 @@ class DatabaseSeeder extends Seeder
                 'phone' => $faker->phoneNumber(),
                 'address' => $faker->address(),
                 'avatar_id' => 1,
+                'has_pay' => true,
+                'regist_price' => 100000,
                 'is_incognito' => false,
+                'incognito_bear' => null
             ]);
         }
 
@@ -139,7 +142,6 @@ class DatabaseSeeder extends Seeder
             'amount' => 500,
             'avatar_id' => 1,
             'is_a_gift' => false,
-            'payment_method' => 'Credit Card'
         ]);
     }
 }

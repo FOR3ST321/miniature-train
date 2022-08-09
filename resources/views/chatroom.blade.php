@@ -14,7 +14,7 @@
             ?>
             {{-- @dump($room) --}}
             <div class="d-flex align-items-center">
-                <img src="{{ $pointer->avatar->image }}" alt="" class="img-thumbnail"
+                <img src="{{$pointer->is_incognito? $pointer->incognito_bear : $pointer->avatar->image}}" alt="" class="img-thumbnail"
                     style="width: 75px;height:75px;border-radius:50%">
                 <h4 class="text-white" style="margin-left:20px">{{ $pointer->name }}</h4>
             </div>

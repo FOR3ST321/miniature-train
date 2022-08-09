@@ -11,7 +11,7 @@
             ?>
             <a href="/chat/{{$item->id}}" style="text-decoration: none">
                 <div class="d-flex align-items-center contact" style="margin:10px 0px 20px 0px">
-                    <img src="{{ $pointer->avatar->image }}" alt="" class="img-thumbnail"
+                    <img src="{{$pointer->is_incognito? $pointer->incognito_bear : $pointer->avatar->image}}" alt="" class="img-thumbnail"
                         style="width: 75px;height:75px;">
                     <h4 class="text-white" style="margin-left:20px">{{ $pointer->name }}</h4>
                 </div>

@@ -25,7 +25,10 @@ class CreateUsersTable extends Migration
             $table->string('phone');
             $table->longText('address');
             $table->unsignedBigInteger('avatar_id');
+            $table->boolean('has_pay');
+            $table->integer('regist_price');
             $table->boolean('is_incognito');
+            $table->string('incognito_bear')->nullable();
             $table->timestamps();
 
             $table->foreign('avatar_id')->references('id')->on('avatars');

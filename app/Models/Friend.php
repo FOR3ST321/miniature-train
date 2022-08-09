@@ -9,7 +9,7 @@ class Friend extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['friend_1', 'friend_2'];
+    protected $fillable = ['friend_1', 'friend_2', 'is_confirmed'];
 
     public function friends_1(){
         return $this->belongsTo(User::class, 'friend_1', 'id');

@@ -14,4 +14,8 @@ class Avatar extends Model
     public function user(){
         return $this->hasMany(User::class);
     }
+
+    public function userAvatar(){
+        return $this->hasMany(UserAvatar::class);
+    }
 }

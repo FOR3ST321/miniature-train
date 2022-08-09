@@ -27,18 +27,21 @@ class User extends Authenticatable
         'instagram_link',
         'phone',
         'address',
-        'avatar',
-        'is_incognito'
+        'avatar_id',
+        'has_pay',
+        'regist_price',
+        'is_incognito',
+        'incognito_bear',
     ];
 
     public static function getSearchData($query){
         global $queries;
         $queries = $query;
-        return User::where('name', 'like', '%'.$query.'%')
+        return User::where('name', 'like', '%'.$query.'%')->where('is_incognito', 0)
         ->orWhereHas('hobbies', function($query){
             global $queries;
             $query->where('hobby', 'like', '%'.$queries.'%');
-        })->where('is_incognito', 0)->orderByDesc('id')->paginate(9);
+        })->orderByDesc('id')->paginate(9);
     }
 
     public function hobbies(){

@@ -2,9 +2,9 @@
 
 @section('content')
     <div class="container-fluid" style="padding:20px 30px 20px 30px">
-        {{-- <h3 class="text-white">Welcome To BeeVerse!</h3> --}}
+        <h2 class="text-white text-center">Welcome To BeeVerse!</h2>
 
-        <div class="d-flex align-items-center">
+        <div class="d-flex align-items-center" style="margin-top:30px;">
             <h6 class="text-white" style="margin:0">Filter by Gender: </h6>
             <select id="gender_filter" class="form-select" style="margin-left:10px">
                 <option value="">All</option>

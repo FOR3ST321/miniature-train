@@ -20,7 +20,6 @@ class CreatePaymentsTable extends Migration
             $table->integer('amount');
             $table->unsignedBigInteger('avatar_id')->nullable();
             $table->boolean('is_a_gift')->nullable();
-            $table->enum('payment_method', ['Credit Card', 'PayPal']);
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');
