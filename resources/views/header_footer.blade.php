@@ -57,7 +57,7 @@
                         <a class="nav-link" href="/avatar">Avatar</a>
                     </li>
                     <li class="nav-item {{ $active == 'message' ? 'active' : '' }}">
-                        <a class="nav-link" href="/message">Message</a>
+                        <a class="nav-link" href="/message">@lang('headfoot.message')</a>
                     </li>
                     <li class="nav-item {{ $active == 'profile' ? 'active' : '' }}">
                         <a class="nav-link" href="/profile">

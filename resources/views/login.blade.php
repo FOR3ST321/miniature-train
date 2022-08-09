@@ -4,7 +4,6 @@
     <div class="container d-flex justify-content-center align-items-center" style="height: 90vh">
         <div class="container" style="width:400px;background-color:white;padding:20px">
             <h3 class="text-center">LOGIN</h3>
-            <p class="text-center">Login to BeeVerse!</p>
             <form action="/login" method="post" style="margin-top: 30px">
                 @csrf
                 @if ($errors->any())
@@ -27,7 +26,7 @@
                 </div>
             </form>
 
-            <p>Didn't have account? <a href="/register">Register Here</a></p>
+            <p>@lang('login.no_acc') <a href="/register">@lang('login.reghere')</a></p>
         </div>
     </div>
 @endsection

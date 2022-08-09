@@ -8,9 +8,9 @@
 
         <div class="alert alert-info" role="alert">
             <div class="d-flex justify-content-between align-items-center">
-                <strong>Your Balance: <span id="coin"
+                <strong>@lang('avatar.balance'): <span id="coin"
                         class="{{ Auth::user()->coin == 0 ? 'text-danger' : '' }}">{{ Auth::user()->coin }}</span>
-                    coin(s)</strong>
+                    @lang('avatar.coin')</strong>
                 <a class="btn btn-success" href="/topup">
                     <div class="d-flex align-items-center">
                         <ion-icon name="card" style="margin-right:5px"></ion-icon>
@@ -26,36 +26,36 @@
                     <img src="{{ $item->image }}" alt="" class="img-thumbnail"
                         style="border-radius: 50%;width:175px;height:175px">
                     <strong class="text-white" style="margin-top:10px;">{{ $item->name }}</strong>
-                    <span class="text-white" style="margin-bottom:10px"> {{ $item->price }} coins</span>
+                    <span class="text-white" style="margin-bottom:10px"> {{ $item->price }} @lang('avatar.coin')</span>
                     <div class="d-flex justify-content-between btn-group">
 
                         {{-- @dump($item) --}}
                         @if ($item->user_id == null)
                             <form action="/buyAvatar" method="post">
                                 @csrf
-                                <input type="hidden" name="avatar_id" value="{{ $item->id }}"/>
+                                <input type="hidden" name="avatar_id" value="{{ $item->id }}" />
                                 <button type="submit" class="btn btn-primary">
                                     <div class="d-flex align-items-center">
-                                        <ion-icon name="cart-outline" style="margin-right:5px"></ion-icon> Buy
+                                        <ion-icon name="cart-outline" style="margin-right:5px"></ion-icon> @lang('avatar.buy')
                                     </div>
                                 </button>
                             </form>
                         @else
                             <form action="/useAvatar" method="post">
                                 @csrf
-                                <input type="hidden" name="avatar_id" value="{{ $item->id }}"/>
+                                <input type="hidden" name="avatar_id" value="{{ $item->id }}" />
                                 <button type="submit" class="btn btn-success"
                                     {{ $item->id == Auth::user()->avatar->id ? 'disabled' : '' }}>
                                     <div class="d-flex align-items-center">
                                         <ion-icon name="person-circle" style="margin-right:5px"></ion-icon>
-                                        {{ $item->id == Auth::user()->avatar->id ? 'Used' : 'Use' }}
+                                        {{ $item->id == Auth::user()->avatar->id ? Lang::get('used') : Lang::get('use') }}
                                     </div>
                                 </button>
                             </form>
                         @endif
-                        <a class="btn btn-warning" href="/giveAvatar/{{$item->id}}">
+                        <a class="btn btn-warning" href="/giveAvatar/{{ $item->id }}">
                             <div class="d-flex align-items-center">
-                                <ion-icon name="gift-outline" style="margin-right:5px"></ion-icon> Gift
+                                <ion-icon name="gift-outline" style="margin-right:5px"></ion-icon> @lang('avatar.gift')
                             </div>
                         </a>
                     </div>

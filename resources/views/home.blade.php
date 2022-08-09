@@ -2,14 +2,14 @@
 
 @section('content')
     <div class="container-fluid" style="padding:20px 30px 20px 30px">
-        <h2 class="text-white text-center">Welcome To BeeVerse!</h2>
+        <h2 class="text-white text-center">@lang('home.welcome')</h2>
 
         <div class="d-flex align-items-center" style="margin-top:30px;">
-            <h6 class="text-white" style="margin:0">Filter by Gender: </h6>
+            <h6 class="text-white" style="margin:0">@lang('home.filter'): </h6>
             <select id="gender_filter" class="form-select" style="margin-left:10px">
                 <option value="">All</option>
-                <option value="Male" @if (request()->gender != null && request()->gender == 'Male') selected @endif>Male</option>
-                <option value="Female" @if (request()->gender != null && request()->gender == 'Female') selected @endif>Female</option>
+                <option value="Male" @if (request()->gender != null && request()->gender == 'Male') selected @endif>@lang('home.male')</option>
+                <option value="Female" @if (request()->gender != null && request()->gender == 'Female') selected @endif>@lang('home.female')</option>
             </select>
         </div>
 
@@ -26,7 +26,7 @@
                             <h5 class="card-title text-white">{{$item->name}}</h5>
                             <p class="card-text text-white">
                                 <span style="margin-bottom:10px;" class="font-weight-bold">
-                                    Hobby: <br>
+                                    @lang('home.hobby'): <br>
                                 </span> 
                                 @foreach($hobby as $hobby) {{$hobby->hobby}} <br> @endforeach
                             </p>

@@ -3,7 +3,7 @@
 @section('content')
     <a class="btn btn-outline-danger text-white" style="margin:20px" href="/message">
         <div class="d-flex align-items-center">
-            <ion-icon name="chevron-back-outline"></ion-icon> Back to Message
+            <ion-icon name="chevron-back-outline"></ion-icon> @lang('chatroom.back')
         </div>
     </a>
 
@@ -28,7 +28,7 @@
                 @csrf
                 <div class="input-group mb-3">
                     <input type="hidden" id="room_id" value="{{ request()->id }}">
-                    <input type="text" class="form-control" placeholder="Type Message..." id="chat_input" />
+                    <input type="text" class="form-control" placeholder="@lang('chatroom.input')" id="chat_input" autofocus/>
                     <button class="btn btn-outline-primary" type="button" id="send_button">
                         <ion-icon name="send-outline"></ion-icon>
                     </button>

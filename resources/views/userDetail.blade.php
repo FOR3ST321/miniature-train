@@ -3,7 +3,7 @@
 @section('content')
     <a class="btn btn-outline-danger text-white" style="margin:20px 0px 0px 25px" href="/">
         <div class="d-flex align-items-center">
-            <ion-icon name="chevron-back-outline"></ion-icon> Back
+            <ion-icon name="chevron-back-outline"></ion-icon> @lang('incognito.back')
         </div>
     </a>
     {{-- @dump($friend) --}}
@@ -26,7 +26,7 @@
                         <div class="d-flex align-items-center">
                             <ion-icon name="person-add-outline"></ion-icon>
                             <span style="margin-left:5px">
-                                Send Friend Request
+                                @lang('udetail.req')
                             </span>
                         </div>
                     </button>
@@ -38,7 +38,7 @@
                     <button class="btn btn-primary" style="cursor:default">
                         <div class="d-flex align-items-center">
                             <span>
-                                Friends
+                                @lang('udetail.friend')
                             </span>
                             <ion-icon name="checkmark-circle-outline" style="margin-left:5px"></ion-icon>
                         </div>
@@ -56,7 +56,7 @@
                                 <div class="d-flex align-items-center">
                                     <ion-icon name="close-circle-outline"></ion-icon>
                                     <span style="margin-left:5px">
-                                        Cancel Friend Request
+                                        @lang('udetail.cancel')
                                     </span>
                                 </div>
                             </button>
@@ -64,7 +64,7 @@
                     </form>
                 @else
                     <div class="d-flex align-items-center flex-column" style="margin-top:20px">
-                        <span class="text-white">This user sent you a friend request!</span>
+                        <span class="text-white">@lang('udetail.msg')</span>
                         <div class="btn-group" role="group" aria-label="Basic example">
                             <form action="/acceptFriendReq" method="post">
                                 @csrf
@@ -74,7 +74,7 @@
                                     <div class="d-flex align-items-center">
                                         <ion-icon name="close-circle-outline"></ion-icon>
                                         <span style="margin-left:5px">
-                                            Accept Friend Request
+                                            @lang('udetail.accept')
                                         </span>
                                     </div>
                                 </button>
@@ -87,7 +87,7 @@
                                     <div class="d-flex align-items-center">
                                         <ion-icon name="close-circle-outline"></ion-icon>
                                         <span style="margin-left:5px">
-                                            Reject Friend Request
+                                            @lang('udetail.reject')
                                         </span>
                                     </div>
                                 </button>
@@ -98,41 +98,41 @@
             @endif
         @endif
         <div style="margin-top:50px">
-            <h5 class="text-white">About Me</h5>
+            <h5 class="text-white">@lang('profile.aboutme')</h5>
             <hr style="background-color:white;border: 0.5px solid white">
             <table class="table table-bordered" style="background-color: white">
                 <tbody>
-                  <tr>
-                    <th scope="row" style="width: 20%">Name</th>
-                    <td style="width: 30%">{{$user->name}}</td>
-                    <th scope="row" style="width: 20%">Email</th>
-                    <td>{{$user->email}}</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Gender</th>
-                    <td>{{$user->gender}}</td>
-                    <th scope="row">Age</th>
-                    <td>{{$user->age}} years old</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Phone Number</th>
-                    <td>{{$user->phone}}</td>
-                    <th scope="row">Instagram</th>
-                    <?php
-                    $ig = explode('/', $user->instagram_link);
-                    $key = key(array_slice($ig, -1, 1, true));
-                    ?>
-                    <td><a href="{{$user->instagram_link}}">{{$ig[$key]}}</a></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Address</th>
-                    <td colspan="3">{{$user->address}}</td>
-                  </tr>
+                    <tr>
+                        <th scope="row" style="width: 20%">@lang('profile.name')</th>
+                        <td style="width: 30%">{{ $user->name }}</td>
+                        <th scope="row" style="width: 20%">Email</th>
+                        <td>{{ $user->email }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Gender</th>
+                        <td>{{ $user->gender }}</td>
+                        <th scope="row">@lang('profile.age')</th>
+                        <td>{{ $user->age }} @lang('profile.yo')</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">@lang('profile.phone')</th>
+                        <td>{{ $user->phone }}</td>
+                        <th scope="row">Instagram</th>
+                        <?php
+                        $ig = explode('/', $user->instagram_link);
+                        $key = key(array_slice($ig, -1, 1, true));
+                        ?>
+                        <td><a href="{{ $user->instagram_link }}">{{ $ig[$key] }}</a></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">@lang('profile.address')</th>
+                        <td colspan="3">{{ $user->address }}</td>
+                    </tr>
                 </tbody>
-              </table>
+            </table>
         </div>
         <div style="margin-top:50px;margin-bottom:70px">
-            <h5 class="text-white">My Hobbies</h5>
+            <h5 class="text-white">@lang('profile.hobby')</h5>
             <hr style="background-color:white;border: 0.5px solid white">
             <div class="row" style="margin-top:30px">
                 @foreach ($user->hobbies as $item)

@@ -10,12 +10,12 @@
         </div>
            
         <div style="margin-top:50px">
-            <h5 class="text-white">About Me</h5>
+            <h5 class="text-white">@lang('profile.aboutme')</h5>
             <hr style="background-color:white;border: 0.5px solid white">
             <table class="table table-bordered" style="background-color: white">
                 <tbody>
                   <tr>
-                    <th scope="row" style="width: 20%">Name</th>
+                    <th scope="row" style="width: 20%">@lang('profile.name')</th>
                     <td style="width: 30%">{{$user->name}}</td>
                     <th scope="row" style="width: 20%">Email</th>
                     <td>{{$user->email}}</td>
@@ -23,11 +23,11 @@
                   <tr>
                     <th scope="row">Gender</th>
                     <td>{{$user->gender}}</td>
-                    <th scope="row">Age</th>
-                    <td>{{$user->age}} years old</td>
+                    <th scope="row">@lang('profile.age')</th>
+                    <td>{{$user->age}} @lang('profile.yo')</td>
                   </tr>
                   <tr>
-                    <th scope="row">Phone Number</th>
+                    <th scope="row">@lang('profile.phone')</th>
                     <td>{{$user->phone}}</td>
                     <th scope="row">Instagram</th>
                     <?php
@@ -37,14 +37,14 @@
                     <td><a href="{{$user->instagram_link}}">{{$ig[$key]}}</a></td>
                   </tr>
                   <tr>
-                    <th scope="row">Address</th>
+                    <th scope="row">@lang('profile.address')</th>
                     <td colspan="3">{{$user->address}}</td>
                   </tr>
                 </tbody>
               </table>
         </div>
         <div style="margin-top:30px">
-            <h5 class="text-white">My Hobbies</h5>
+            <h5 class="text-white">@lang('profile.hobby')</h5>
             <hr style="background-color:white;border: 0.5px solid white">
             <div class="row" style="margin-top:30px">
                 @foreach ($user->hobbies as $item)
@@ -63,7 +63,7 @@
         </div>
 
         <div style="margin-top:30px">
-            <h5 class="text-white">My Avatars</h5>
+            <h5 class="text-white">@lang('profile.ava')</h5>
             <hr style="background-color:white;border: 0.5px solid white">
             <a href="/avatar" class="btn btn-primary">Buy More Avatar!</a>
             <div class="d-flex flex-wrap justify-content-between" style="margin: 10px 0px 30px 0px">
@@ -94,9 +94,9 @@
         </div>
 
         <div style="margin-top:30px">
-            <h5 class="text-white">Settings</h5>
+            <h5 class="text-white">@lang('profile.set')</h5>
             <hr style="background-color:white;border: 0.5px solid white">
-            <a href="/incognito" class="btn btn-warning">Incognito Mode ({{Auth::user()->is_incognito? 'On' : 'Off'}})</a>
+            <a href="/incognito" class="btn btn-warning">@lang('profile.incog') ({{Auth::user()->is_incognito? 'On' : 'Off'}})</a>
             <a href="/logout" class="btn btn-danger">Logout</a>
         </div>
     </div>

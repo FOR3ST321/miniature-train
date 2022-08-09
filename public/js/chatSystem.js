@@ -1,11 +1,7 @@
-//php yg nerima ajax ada di web.php, cek aja ada "ajax" nya
-
 function sendChat() {
-    //ambil message, room id, sama url aku taro di <form> , tapi kalau pake cara tembak url kaya loadMessage() harusnya bisa, coba aja :D
     let msg = $("#chat_input").val();
     let room_id = $("#room_id").val();
     let url = $("#chatForm").data('url');
-    // console.log(url)
     $.ajax({
         type: "POST",
         url: url,
@@ -18,14 +14,14 @@ function sendChat() {
 }
 
 function loadMessage(){
-    let room_id = $("#room_id").val(); //ambil room id dari input hidden
+    let room_id = $("#room_id").val();
     $.ajax({
         type: "GET",
         url: '/loadMessage',
         data: {room_id: room_id },
         success: function (data) { 
-            $("#chatbox").html(''); //reset
-            data.data.forEach(e=> { //loop data yg diterima dari function php
+            $("#chatbox").html(''); 
+            data.data.forEach(e=> { 
                 let html;
                 if(e.user_id === e.sender){
                     html =  `<div class="container text-white text-right" style="background-color:#2cab20;margin:10px 0px 5px 40%;width:60%;padding:10px">
@@ -43,7 +39,7 @@ function loadMessage(){
 
                 $("#chatbox").append(html);
             });
-            scrollToBottom(); //ini kalau panjang jadi auto scroll ke bawah, tapi ngebug kalau kita coba scroll ke atas
+            scrollToBottom();
         },
     });
 }
@@ -53,34 +49,30 @@ function scrollToBottom(){
     element.scrollTop = element.scrollHeight;
 }
 
-$(document).ready(function () { //mulai dari sini
+$(document).ready(function () {
 
-    //setup ajax wajib, jangan lupa liat di header_footer ditambah meta csrf, terus include jquery nya harud cdn ajax
     $.ajaxSetup({
         headers: {
             "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
         },
     });
 
-    //load message
     loadMessage();
-    
-    //setiap 1 detik manggil ajax buat refresh message baru
+
     setInterval(function () {loadMessage()}, 1000);
 
-    $("#send_button").attr("disabled", "true"); //disable button send dari awal jadi gak ngirim input kosong
+    $("#send_button").attr("disabled", "true");
     $("#send_button").click(function (e) {
         e.preventDefault();
-        sendChat(); //kalau send dipencet, kirim chat
+        sendChat(); 
     });
 
-    $("#chat_input").keypress(function (e) { //ini cek di input kalau kita ngetik
-        if ($(this).val().length > 0) { //kalau gak kosong
-            $("#send_button").removeAttr("disabled"); //enable button send
+    $("#chat_input").keypress(function (e) {
+        if ($(this).val().length > 0) { 
+            $("#send_button").removeAttr("disabled"); 
 
             let key = e.which;
             if (key == 13) {
-                //enter key
                 e.preventDefault();
                 sendChat();
             }

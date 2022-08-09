@@ -6,14 +6,14 @@
 
         <div class="card text-center">
             <div class="card-header">
-                TOP UP COINS
+                @lang('topup.coin')
             </div>
             <div class="card-body">
-                <h5 class="card-title"> Your Balance: <span id="coin"
+                <h5 class="card-title"> @lang('avatar.balance'): <span id="coin"
                         class="{{ Auth::user()->coin == 0 ? 'text-danger' : '' }}">{{ Auth::user()->coin }}</span>
-                    coin(s)</h5>
+                    @lang('avatar.coin')</h5>
                 <img src="/img/tobrut.png" alt="topup" style="height:350px;width:350px">
-                <h5>Add 100 Coin to your Balance!</h5>
+                <h5>@lang('topup.add')</h5>
                 <form action="/topup" method="POST">
                     @csrf
                     <button type="submit" class="btn btn-primary" style="width:30%">

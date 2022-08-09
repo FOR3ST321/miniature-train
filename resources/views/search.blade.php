@@ -3,13 +3,13 @@
 @section('content')
     <a class="btn btn-outline-danger text-white" style="margin:20px 0px 0px 25px" href="/">
         <div class="d-flex align-items-center">
-            <ion-icon name="chevron-back-outline"></ion-icon> Back to Home
+            <ion-icon name="chevron-back-outline"></ion-icon> @lang('search.back')
         </div>
     </a>
     <div class="container-fluid" style="padding:20px 30px 20px 30px">
         <h3 class="text-white">Search Result For: {{ request()->searchData }}</h3>
         @if ($data->count() == 0)
-            <h4 class="text-white text-center" style="margin-top:25vh">Data not Found!</h4>
+            <h4 class="text-white text-center" style="margin-top:25vh">@lang('search.notfound')</h4>
         @endif
         <div class="row" style="margin-top:20px">
             @foreach ($data as $item)
@@ -31,7 +31,7 @@
                                 <h5 class="card-title text-white">{{ $item->name }}</h5>
                                 <p class="card-text text-white">
                                     <span style="margin-bottom:10px;" class="font-weight-bold">
-                                        Hobby: <br>
+                                        @lang('search.hobby'): <br>
                                     </span> 
                                     @foreach($hobby as $hobby) {{$hobby->hobby}} <br> @endforeach
                                 </p>
