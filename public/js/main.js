@@ -2,6 +2,10 @@ $("#gender_filter").on("change", function () {
     window.location = '/home/' + $(this).val();
 });
 
+$("#lang").on("change", function () {
+    window.location = $(this).val();
+});
+
 $("#regis_noBtn").hide();
 $("#regist_fee").on('keyup', function (e) {
     let price = parseInt($("#regist_price").text());

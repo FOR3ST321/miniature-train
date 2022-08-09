@@ -9,6 +9,7 @@ use App\Models\ChatRoom;
 use App\Models\UserAvatar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Foundation\Bus\DispatchesJobs;
@@ -20,7 +21,14 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
+    private function setLang(){
+        if(request()->session()->get('locale') != null){
+            App::setLocale(request()->session()->get('locale'));
+        }
+    }
+
     public function dashboard(){
+        $this->setLang();
         $user = User::where('is_incognito', 0);
         if(Auth::check()){
             $user = $user->where('id', '!=', Auth::user()->id);
@@ -38,6 +46,7 @@ class Controller extends BaseController
     }
 
     public function search(Request $request){
+        $this->setLang();
         $data = User::getSearchData($request->searchData);
         return view('search', [
             'data' => $data,
@@ -46,18 +55,22 @@ class Controller extends BaseController
     }
 
     public function login(){
+        $this->setLang();
         return view('login', ['active' => 'login']);
     }
 
     public function register(){
+        $this->setLang();
         return view('register', ['active' => '']);
     }
 
     public function payRegist(){
+        $this->setLang();
         return view('payRegist', ['active' => '', 'user' => User::find(request()->id)]);
     }
 
     public function message(){
+        $this->setLang();
         return view('message', [
             'rooms' => ChatRoom::where('friend_1', Auth::user()->id)->orwhere('friend_2', Auth::user()->id)->orderByDesc('id')->get(),
             'active' => 'message'
@@ -65,6 +78,7 @@ class Controller extends BaseController
     }
 
     public function chatroom(){
+        $this->setLang();
         return view('chatroom', [
             'room' => ChatRoom::where('id', request()->id)->orderByDesc('created_at')->first(),
             'active' => ''
@@ -72,6 +86,7 @@ class Controller extends BaseController
     }
 
     public function userDetail(Request $request){
+        $this->setLang();
         $user = User::where('id', $request->id)->first();
         $friend = Friend::where([['friend_1', Auth::user()->id], ['friend_2', $user->id]])
         ->orWhere([['friend_2', Auth::user()->id], ['friend_1', $user->id]])->first();
@@ -83,6 +98,7 @@ class Controller extends BaseController
     }
     
     public function avatar(Request $request){
+        $this->setLang();
         $avatar = DB::table('avatars')->select('avatars.*', 'user_avatars.user_id', 'user_avatars.avatar_id')->where('avatars.id' , '!=', 1)->leftJoin('user_avatars', function ($join){
             $join->on('avatars.id', '=', 'user_avatars.avatar_id')
             ->on('user_avatars.user_id', '=', DB::raw(Auth::user()->id));
@@ -97,6 +113,7 @@ class Controller extends BaseController
     }
 
     public function giveAvatar(Request $request){
+        $this->setLang();
         $friend = Friend::where('is_confirmed', 1)->where('friend_1' , Auth::user()->id)->orWhere('friend_2', Auth::user()->id);
         $user = User::find(Auth::user()->id);
         $avatar = Avatar::find($request->id);
@@ -120,12 +137,14 @@ class Controller extends BaseController
     }
 
     public function topup(){
+        $this->setLang();
         return view('topup', [
             'active' => ''
         ]);
     }
 
     public function profile(){
+        $this->setLang();
         return view('profile', [
             'user' => User::find(Auth::user()->id),
             'myAvatar' => DB::table('user_avatars')->join('avatars', 'avatars.id', '=', 'user_avatars.avatar_id')->where('user_avatars.user_id', Auth::user()->id)->where('avatars.id', '!=', 1)->get(),
@@ -134,6 +153,7 @@ class Controller extends BaseController
     }
 
     public function incognito(){
+        $this->setLang();
         return view('incognito', [
             'active' => ''
         ]);

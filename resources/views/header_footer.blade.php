@@ -33,6 +33,20 @@
                     <ion-icon name="search-outline"></ion-icon>
                 </button>
             </form>
+            <select name="lang" id="lang" class="form-control"
+                style="margin-left:20px;width:150px">
+                <?php
+                $lang = request()
+                    ->session()
+                    ->get('locale');
+                ?>
+                <option value="/lang/en"
+                    {{ $lang != null && $lang == 'en' ? 'selected' : '' }}>English
+                </option>
+                <option value="/lang/id"
+                    {{ $lang != null && $lang == 'id' ? 'selected' : '' }}>Indonesia
+                </option>
+            </select>
             <ul class="navbar-nav ml-auto align-items-center">
                 <li class="nav-item {{ $active == 'home' ? 'active' : '' }}">
                     <a class="nav-link" href="/">Home</a>

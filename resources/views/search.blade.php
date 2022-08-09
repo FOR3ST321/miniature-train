@@ -30,10 +30,10 @@
                             <div class="card-body" style="background-color:var(--dark);">
                                 <h5 class="card-title text-white">{{ $item->name }}</h5>
                                 <p class="card-text text-white">
-                                    Hobby: @foreach ($hobby as $hobby)
-                                        <span
-                                            style="background-color: #2a27db;padding:5px;border-radius:5px">{{ $hobby->hobby }}</span>
-                                    @endforeach
+                                    <span style="margin-bottom:10px;" class="font-weight-bold">
+                                        Hobby: <br>
+                                    </span> 
+                                    @foreach($hobby as $hobby) {{$hobby->hobby}} <br> @endforeach
                                 </p>
                             </div>
                         </div>
